@@ -87,7 +87,39 @@ map.on('click', 'locality-test', (e) => {
 
     const props = e.features[0].properties;
 
-    console.log(Object.keys(props));
+    document.getElementById('localityName').innerHTML =
+        props.LOC_NAME;
+
+    document.getElementById('localityInfo').innerHTML = `
+
+        <h3>Region</h3>
+        <p>${props[Object.keys(props).find(k => k.includes('_Region'))]}</p>
+
+        <h3>Historical Summary</h3>
+        <p>${props[Object.keys(props).find(k => k.includes('_Historical Summary'))]}</p>
+
+        <h3>Cultural Identity</h3>
+        <p>${props[Object.keys(props).find(k => k.includes('_Cultural Identity'))]}</p>
+
+        <h3>Indigenous Context</h3>
+        <p>${props[Object.keys(props).find(k => k.includes('_Indigenous Context'))]}</p>
+
+        <h3>Photo 1</h3>
+        <a href="${props[Object.keys(props).find(k => k.includes('_Photo URL 1'))]}" target="_blank">
+            View Photo
+        </a>
+
+        <h3>Photo 2</h3>
+        <a href="${props[Object.keys(props).find(k => k.includes('_Photo URL 2'))]}" target="_blank">
+            View Photo
+        </a>
+
+        <h3>Audio</h3>
+        <a href="${props[Object.keys(props).find(k => k.includes('_Audio URL'))]}" target="_blank">
+            Listen
+        </a>
+
+    `;
 });
 </script>
 
