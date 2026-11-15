@@ -81,7 +81,9 @@ const map = new mapboxgl.Map({
 });
 
 map.addControl(new mapboxgl.NavigationControl());
-
+map.on('click', (e) => {
+    console.log(e);
+});
 </script>
 
 </body>
