@@ -1,5 +1,107 @@
-Sydney Anthropology Map
-Barangaroo
-This is the first test page for my anthropology mapping project.
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sydney Anthropology Map</title>
 
-If you can see this page, GitHub Pages is working correctly.
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 80px);
+        }
+
+        .map-panel {
+            width: 65%;
+            background: #dbeafe;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+
+        .info-panel {
+            width: 35%;
+            overflow-y: auto;
+            padding: 20px;
+            box-sizing: border-box;
+            border-left: 1px solid #ccc;
+        }
+
+        img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="header">
+    Sydney Anthropology Map
+</div>
+
+<div class="container">
+
+    <div class="map-panel">
+        MAPBOX MAP WILL GO HERE
+    </div>
+
+    <div class="info-panel">
+
+        <h2>Barangaroo</h2>
+
+        <p>
+            <strong>Region:</strong><br>
+            Sydney CBD / Eastern Suburbs
+        </p>
+
+        <p>
+            <strong>Historical Summary:</strong><br>
+            Former industrial harbour area transformed into a major waterfront precinct.
+        </p>
+
+        <p>
+            <strong>Cultural Identity:</strong><br>
+            Tourism, public space, corporate activity and urban renewal.
+        </p>
+
+        <h3>Photos</h3>
+
+        <p>
+            Photo placeholders
+        </p>
+
+        <h3>Audio</h3>
+
+        <p>
+            Audio placeholder
+        </p>
+
+        <h3>Field Notes</h3>
+
+        <p>
+            This panel will eventually update automatically when a locality is clicked.
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
