@@ -82,8 +82,10 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-map.on('load', () => {
-    console.log(map.getStyle().layers);
+map.on('click', 'locality-test', (e) => {
+
+    console.log(e.features[0].properties);
+    
 });
 </script>
 
