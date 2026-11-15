@@ -51,16 +51,17 @@ body {
 
     <div id="map"></div>
 
-    <div class="info-panel">
+   <div class="info-panel">
 
-        <h2 id="localityName">Click a locality</h2>
+    <h2 id="localityName">
+        Click a locality
+    </h2>
 
-        <p>
-            When we connect your locality data, details for the clicked
-            locality will appear here.
-        </p>
-
+    <div id="localityInfo">
+        Select a locality to view information.
     </div>
+
+</div>
 
 </div>
 
@@ -84,8 +85,29 @@ map.addControl(new mapboxgl.NavigationControl());
 
 map.on('click', 'locality-test', (e) => {
 
-    console.log(e.features[0].properties);
-    
+    const props = e.features[0].properties;
+
+    document.getElementById('localityName').innerHTML =
+        props.LOC_NAME || 'Unknown Locality';
+
+    document.getElementById('localityInfo').innerHTML = `
+        <h3>Region</h3>
+        <p>${props['Locality Research Test – Sheet1_Region'] || ''}</p>
+
+        <h3>Historical Summary</h3>
+        <p>${props['Locality Research Test – Sheet1_Historical Summary'] || ''}</p>
+
+        <h3>Photo</h3>
+        <a href="${props['Locality Research Test – Sheet1_Photo URL 1'] || '#'}" target="_blank">
+            View Photo
+        </a>
+
+        <h3>Audio</h3>
+        <a href="${props['Locality Research Test – Sheet1_Audio URL'] || '#'}" target="_blank">
+            Listen
+        </a>
+    `;
+
 });
 </script>
 
