@@ -87,26 +87,13 @@ map.on('click', 'locality-test', (e) => {
 
     const props = e.features[0].properties;
 
+    console.log(props);
+
     document.getElementById('localityName').innerHTML =
         props.LOC_NAME || 'Unknown Locality';
 
-    document.getElementById('localityInfo').innerHTML = `
-        <h3>Region</h3>
-        <p>${props['Locality Research Test – Sheet1_Region'] || ''}</p>
-
-        <h3>Historical Summary</h3>
-        <p>${props['Locality Research Test – Sheet1_Historical Summary'] || ''}</p>
-
-        <h3>Photo</h3>
-        <a href="${props['Locality Research Test – Sheet1_Photo URL 1'] || '#'}" target="_blank">
-            View Photo
-        </a>
-
-        <h3>Audio</h3>
-        <a href="${props['Locality Research Test – Sheet1_Audio URL'] || '#'}" target="_blank">
-            Listen
-        </a>
-    `;
+    document.getElementById('localityInfo').innerHTML =
+        '<pre>' + JSON.stringify(props, null, 2) + '</pre>';
 
 });
 </script>
