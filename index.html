@@ -105,19 +105,24 @@ map.on('click', 'locality-test', (e) => {
         <p>${props[Object.keys(props).find(k => k.includes('_Indigenous Context'))]}</p>
 
         <h3>Photo 1</h3>
-        <a href="${props[Object.keys(props).find(k => k.includes('_Photo URL 1'))]}" target="_blank">
-            View Photo
-        </a>
+<img
+    src="${props[Object.keys(props).find(k => k.includes('_Photo URL 1'))]}"
+    style="width:100%; border-radius:8px; margin-bottom:10px;"
+>
 
         <h3>Photo 2</h3>
-        <a href="${props[Object.keys(props).find(k => k.includes('_Photo URL 2'))]}" target="_blank">
-            View Photo
-        </a>
+<img
+    src="${props[Object.keys(props).find(k => k.includes('_Photo URL 2'))]}"
+    style="width:100%; border-radius:8px; margin-bottom:10px;"
+>
 
-        <h3>Audio</h3>
-        <a href="${props[Object.keys(props).find(k => k.includes('_Audio URL'))]}" target="_blank">
-            Listen
-        </a>
+       <h3>Audio</h3>
+
+<audio controls style="width:100%;">
+    <source
+        src="${props[Object.keys(props).find(k => k.includes('_Audio URL'))]}"
+        type="audio/mpeg">
+</audio>
 
     `;
 });
