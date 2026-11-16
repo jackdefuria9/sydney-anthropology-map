@@ -68,7 +68,12 @@ map.on('load', () => {
 });
     map.on('click', (e) => {
 
-    const features = map.queryRenderedFeatures(e.point);
+    const features = map.queryRenderedFeatures(
+        e.point,
+        {
+            layers: ['Localities']
+        }
+    );
 
     alert(features.length);
 
