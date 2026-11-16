@@ -68,16 +68,14 @@ map.addControl(new mapboxgl.NavigationControl());
 
     console.log(map.style);
 });
+
     map.on('click', (e) => {
 
-    const features = map.queryRenderedFeatures(
-        e.point,
-        {
-            layers: ['Localities']
-        }
-    );
-
-    alert(features.length);
+    document.getElementById('info').innerHTML = `
+        <h2>Map Click Detected</h2>
+        <p>Longitude: ${e.lngLat.lng}</p>
+        <p>Latitude: ${e.lngLat.lat}</p>
+    `;
 
 });
     
