@@ -86,6 +86,8 @@ map.addLayer({
 
     const p = e.features[0].properties;
 
+    alert(Object.keys(p).join('\n'));
+
     document.getElementById('info').innerHTML = `
 
     <h2>${p.LOC_NAME}</h2>
