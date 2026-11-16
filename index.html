@@ -64,6 +64,16 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
+    map.on('click', (e) => {
+
+    document.getElementById('info').innerHTML = `
+        <h2>Map Click Detected</h2>
+        <p>Longitude: ${e.lngLat.lng}</p>
+        <p>Latitude: ${e.lngLat.lat}</p>
+    `;
+
+});
+    
 </script>
 
 </body>
