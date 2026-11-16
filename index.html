@@ -1,228 +1,237 @@
 <!DOCTYPE html>
 <html>
-
+ 
 <head>
 <meta charset="utf-8">
 <title>Sydney Anthropology Map</title>
-
+ 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+ 
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.css" rel="stylesheet">
-
+ 
 <style>
+ 
 body {
-    margin: 0;
+margin: 0;
+font-family: Arial, sans-serif;
 }
+ 
 .header {
-    background: #1e293b;
-    color: white;
-    padding: 18px;
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
+background: #1e293b;
+color: white;
+padding: 18px;
+font-size: 28px;
+font-weight: bold;
+text-align: center;
 }
+ 
 .container {
-    display: flex;
-    height: 100vh;
+display: flex;
+height: calc(100vh - 64px);
 }
-
+ 
 #map {
-    width: 70%;
-    height: 100%;
+width: 70%;
+height: 100%;
 }
-
+ 
 #info {
-    width: 30%;
-    padding: 24px;
-    overflow-y: auto;
-    border-left: 1px solid #d1d5db;
-    background: #f8fafc;
-    box-sizing: border-box;
+width: 30%;
+padding: 24px;
+overflow-y: auto;
+border-left: 1px solid #d1d5db;
+background: #f8fafc;
+box-sizing: border-box;
 }
-
+ 
+#info img {
+width: 100%;
+border-radius: 12px;
+margin-bottom: 12px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+}
+ 
 </style>
-
 </head>
-
+ 
 <body>
-
-<div class="container">
-
-    <div id="map"></div>
-
-    <div id="info">
-        <h2>Click a locality</h2>
-        <p>Information will appear here.</p>
-    </div>
-
+ 
+<div class="header">
+Sydney Anthropology Map
 </div>
-
+ 
+<div class="container">
+ 
+<div id="map"></div>
+ 
+<div id="info">
+<h2>Welcome</h2>
+ 
+<p>
+Explore localities across New South Wales.
+</p>
+ 
+<p>
+Click a locality on the map to begin.
+</p>
+</div>
+ 
+</div>
+ 
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
-
+ 
 <script>
-
+ 
 let hoveredId = null;
 let selectedId = null;
-    
+ 
 mapboxgl.accessToken = 'pk.eyJ1IjoiamFja2RlZnVyaWE5IiwiYSI6ImNtd2hmaDhyNTAwZWwyeW9odGl6Z2pvcTEifQ.AaJfcjadd8p1qsv6SDsThA';
-
+ 
 const map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/jackdefuria9/cmwh41od700c201sg8u111uzn',
-    center: [151.2093, -33.8688],
-    zoom: 11
+container: 'map',
+style: 'mapbox://styles/jackdefuria9/cmwh41od700c201sg8u111uzn',
+center: [151.2093, -33.8688],
+zoom: 11
 });
-
+ 
 map.addControl(new mapboxgl.NavigationControl());
-
-    map.on('load', () => {
+ 
+map.on('load', () => {
+ 
 map.addSource('test-localities', {
-    type: 'vector',
-    url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
-    map.on('mousemove', 'test-localities', (e) => {
-
-    if (e.features.length > 0) {
-
-        if (hoveredId !== null && hoveredId !== selectedId) {
-
-            map.setFeatureState(
-                {
-                    source: 'test-localities',
-                    sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-                    id: hoveredId
-                },
-                {
-                    hover: false
-                }
-            );
-        }
-
-        hoveredId = e.features[0].id;
-
-        if (hoveredId !== selectedId) {
-
-            map.setFeatureState(
-                {
-                    source: 'test-localities',
-                    sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-                    id: hoveredId
-                },
-                {
-                    hover: true
-                }
-            );
-        }
-    }
-
-    map.getCanvas().style.cursor = 'pointer';
-
+type: 'vector',
+url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
 });
-
-map.on('mouseleave', 'test-localities', () => {
-
-    if (
-        hoveredId !== null &&
-        hoveredId !== selectedId
-    ) {
-
-        map.setFeatureState(
-            {
-                source: 'test-localities',
-                sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-                id: hoveredId
-            },
-            {
-                hover: false
-            }
-        );
-    }
-
-    map.getCanvas().style.cursor = '';
-
-});
-});
-
+ 
 map.addLayer({
-    id: 'test-localities',
-    type: 'fill',
-    source: 'test-localities',
-    'source-layer': 'x07wqcid6d7jjsrs5wbm',
-    paint: {
-    'fill-color': [
-        'case',
-
-        ['boolean', ['feature-state', 'selected'], false],
-        '#0f172a',
-
-        ['boolean', ['feature-state', 'hover'], false],
-        '#fff7ae',
-
-        '#ffffff'
-    ],
-
-    'fill-opacity': [
-        'case',
-
-        ['boolean', ['feature-state', 'selected'], false],
-        0.70,
-
-        ['boolean', ['feature-state', 'hover'], false],
-        0.45,
-
-        0
-    ]
+id: 'test-localities',
+type: 'fill',
+source: 'test-localities',
+'source-layer': 'x07wqcid6d7jjsrs5wbm',
+ 
+paint: {
+ 
+'fill-color': [
+'case',
+ 
+['boolean', ['feature-state', 'selected'], false],
+'#0f172a',
+ 
+['boolean', ['feature-state', 'hover'], false],
+'#fff7ae',
+ 
+'#ffffff'
+],
+ 
+'fill-opacity': [
+'case',
+ 
+['boolean', ['feature-state', 'selected'], false],
+0.70,
+ 
+['boolean', ['feature-state', 'hover'], false],
+0.45,
+ 
+0
+]
 }
 });
-        map.on('mouseenter', 'test-localities', () => {
-        map.getCanvas().style.cursor = 'pointer';
-    });
-
-    map.on('mouseleave', 'test-localities', () => {
-        map.getCanvas().style.cursor = '';
-    });
-});
-
-    map.on('click', 'test-localities', (e) => {
-
-    const p = e.features[0].properties;
-    const feature = e.features[0];
-        if (selectedId !== null) {
-
-    map.setFeatureState(
-        {
-            source: 'test-localities',
-            sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-            id: selectedId
-        },
-        {
-            selected: false
-        }
-    );
-}
-
-selectedId = feature.id;
-
+ 
+map.on('mousemove', 'test-localities', (e) => {
+ 
+map.getCanvas().style.cursor = 'pointer';
+ 
+if (!e.features.length) return;
+ 
+const feature = e.features[0];
+ 
+if (hoveredId !== null && hoveredId !== selectedId) {
+ 
 map.setFeatureState(
-    {
-        source: 'test-localities',
-        sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-        id: selectedId
-    },
-    {
-        selected: true
-    }
+{
+source: 'test-localities',
+sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+id: hoveredId
+},
+{
+hover: false
+}
 );
-        map.setFeatureState(
-    {
-        source: 'test-localities',
-        sourceLayer: 'x07wqcid6d7jjsrs5wbm',
-        id: e.features[0].id
-    },
-    {
-        selected: true
-    }
+}
+ 
+hoveredId = feature.id;
+ 
+if (hoveredId !== selectedId) {
+ 
+map.setFeatureState(
+{
+source: 'test-localities',
+sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+id: hoveredId
+},
+{
+hover: true
+}
 );
-    document.getElementById('info').innerHTML = `
+}
+});
+ 
+map.on('mouseleave', 'test-localities', () => {
+ 
+map.getCanvas().style.cursor = '';
+ 
+if (
+hoveredId !== null &&
+hoveredId !== selectedId
+) {
+map.setFeatureState(
+{
+source: 'test-localities',
+sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+id: hoveredId
+},
+{
+hover: false
+}
+);
+}
+ 
+hoveredId = null;
+});
+ 
+map.on('click', 'test-localities', (e) => {
+ 
+const feature = e.features[0];
+const p = feature.properties;
+ 
+if (selectedId !== null) {
+ 
+map.setFeatureState(
+{
+source: 'test-localities',
+sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+id: selectedId
+},
+{
+selected: false
+}
+);
+}
+ 
+selectedId = feature.id;
+ 
+map.setFeatureState(
+{
+source: 'test-localities',
+sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+id: selectedId
+},
+{
+selected: true
+}
+);
+ 
+document.getElementById('info').innerHTML = `
  
 <h2>${p.LOC_NAME}</h2>
  
@@ -239,26 +248,10 @@ map.setFeatureState(
 <p>${p["Locality Research Test — Sheet1_Indigenous Context"] || ""}</p>
  
 <h3>Photo 1</h3>
-<img
-src="${p["Locality Research Test — Sheet1_Photo URL 1"] || ""}"
-style="
-        width:100%;
-        border-radius:12px;
-        margin-bottom:12px;
-        box-shadow:0 2px 10px rgba(0,0,0,0.15);
-    "
->
+<img src="${p["Locality Research Test — Sheet1_Photo URL 1"] || ""}">
  
 <h3>Photo 2</h3>
-<img
-src="${p["Locality Research Test — Sheet1_Photo URL 2"] || ""}"
-style="
-        width:100%;
-        border-radius:12px;
-        margin-bottom:12px;
-        box-shadow:0 2px 10px rgba(0,0,0,0.15);
-    "
->
+<img src="${p["Locality Research Test — Sheet1_Photo URL 2"] || ""}">
  
 <h3>Audio</h3>
  
@@ -269,11 +262,11 @@ type="audio/mpeg">
 </audio>
  
 `;
-
 });
-    
+ 
+});
+ 
 </script>
-
+ 
 </body>
-
 </html>
