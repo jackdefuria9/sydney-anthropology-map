@@ -68,11 +68,9 @@ map.on('load', () => {
 });
     map.on('click', (e) => {
 
-    document.getElementById('info').innerHTML = `
-        <h2>Map Click Detected</h2>
-        <p>Longitude: ${e.lngLat.lng}</p>
-        <p>Latitude: ${e.lngLat.lat}</p>
-    `;
+    const features = map.queryRenderedFeatures(e.point);
+
+    console.log(features);
 
 });
     
