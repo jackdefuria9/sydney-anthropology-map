@@ -46,17 +46,17 @@ body {
 }
 
 #info h2 {
-    margin-top: 0;
+    font-size: 44px;
+    margin-bottom: 5px;
     color: #0f172a;
-    font-size: 30px;
+    line-height: 1;
 }
 
 #info h3 {
-    color: #334155;
-    margin-top: 24px;
-    margin-bottom: 8px;
-    border-bottom: 1px solid #e2e8f0;
-    padding-bottom: 4px;
+    background: #f1f5f9;
+    padding: 10px;
+    border-radius: 8px;
+}
 }
 
 #info p {
@@ -93,6 +93,13 @@ audio {
     background: #64748b;
 }
 
+.region {
+    font-size: 18px;
+    color: #64748b;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
 </style>
 
 </head>
@@ -154,10 +161,27 @@ map.addLayer({
     document.getElementById('info').innerHTML = `
  
 <h2>${p.LOC_NAME}</h2>
+
+<div class="region">
+    ${p["Locality Research Test — Sheet1_Region"] || ""}
+</div>
+
+<img
+src="${p["Locality Research Test — Sheet1_Photo URL 1"] || ""}"
+style="width:100%; border-radius:8px;"
+>
  
-<h3>Region</h3>
-<p>${p["Locality Research Test — Sheet1_Region"] || ""}</p>
+<img
+src="${p["Locality Research Test — Sheet1_Photo URL 2"] || ""}"
+style="width:100%; border-radius:8px;"
+>
  
+<audio controls style="width:100%;">
+<source
+src="${p["Locality Research Test — Sheet1_Audio URL"] || ""}"
+type="audio/mpeg">
+</audio>
+
 <h3>Historical Summary</h3>
 <p>${p["Locality Research Test — Sheet1_Historical Summary"] || ""}</p>
  
@@ -166,26 +190,6 @@ map.addLayer({
  
 <h3>Indigenous Context</h3>
 <p>${p["Locality Research Test — Sheet1_Indigenous Context"] || ""}</p>
- 
-<h3>Photo 1</h3>
-<img
-src="${p["Locality Research Test — Sheet1_Photo URL 1"] || ""}"
-style="width:100%; border-radius:8px;"
->
- 
-<h3>Photo 2</h3>
-<img
-src="${p["Locality Research Test — Sheet1_Photo URL 2"] || ""}"
-style="width:100%; border-radius:8px;"
->
- 
-<h3>Audio</h3>
- 
-<audio controls style="width:100%;">
-<source
-src="${p["Locality Research Test — Sheet1_Audio URL"] || ""}"
-type="audio/mpeg">
-</audio>
  
 `;
 
