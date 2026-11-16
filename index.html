@@ -98,15 +98,15 @@ map.addControl(new mapboxgl.NavigationControl());
  
 map.on('load', () => {
  
-map.addSource('test-localities', {
-type: 'vector',
-url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
+map.addSource('localities-source', {
+    type: 'vector',
+    url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
 });
  
 map.addLayer({
-id: 'test-localities',
-type: 'fill',
-source: 'test-localities',
+    id: 'test-localities',
+    type: 'fill',
+    source: 'localities-source',
 'source-layer': 'x07wqcid6d7jjsrs5wbm',
  
 paint: {
@@ -136,7 +136,7 @@ paint: {
 ]
 }
 });
- 
+ /*
 map.on('mousemove', 'test-localities', (e) => {
  
 map.getCanvas().style.cursor = 'pointer';
@@ -146,7 +146,7 @@ if (!e.features.length) return;
 const feature = e.features[0];
  
 if (hoveredId !== null && hoveredId !== selectedId) {
- 
+
 map.setFeatureState(
 {
 source: 'test-localities',
@@ -198,7 +198,7 @@ hover: false
  
 hoveredId = null;
 });
- 
+ */
 map.on('click', 'test-localities', (e) => {
  
 const feature = e.features[0];
