@@ -61,6 +61,9 @@ body {
 
 <script>
 
+let hoveredId = null;
+let selectedId = null;
+    
 mapboxgl.accessToken = 'pk.eyJ1IjoiamFja2RlZnVyaWE5IiwiYSI6ImNtd2hmaDhyNTAwZWwyeW9odGl6Z2pvcTEifQ.AaJfcjadd8p1qsv6SDsThA';
 
 const map = new mapboxgl.Map({
@@ -76,6 +79,67 @@ map.addControl(new mapboxgl.NavigationControl());
 map.addSource('test-localities', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
+    map.on('mousemove', 'test-localities', (e) => {
+
+    if (e.features.length > 0) {
+
+        if (hoveredId !== null && hoveredId !== selectedId) {
+
+            map.setFeatureState(
+                {
+                    source: 'test-localities',
+                    sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+                    id: hoveredId
+                },
+                {
+                    hover: false
+                }
+            );
+        }
+
+        hoveredId = e.features[0].id;
+
+        if (hoveredId !== selectedId) {
+
+            map.setFeatureState(
+                {
+                    source: 'test-localities',
+                    sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+                    id: hoveredId
+                },
+                {
+                    hover: true
+                }
+            );
+        }
+    }
+
+    map.getCanvas().style.cursor = 'pointer';
+
+});
+
+map.on('mouseleave', 'test-localities', () => {
+
+    if (
+        hoveredId !== null &&
+        hoveredId !== selectedId
+    ) {
+
+        map.setFeatureState(
+            {
+                source: 'test-localities',
+                sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+                id: hoveredId
+            },
+            {
+                hover: false
+            }
+        );
+    }
+
+    map.getCanvas().style.cursor = '';
+
+});
 });
 
 map.addLayer({
@@ -84,8 +148,30 @@ map.addLayer({
     source: 'test-localities',
     'source-layer': 'x07wqcid6d7jjsrs5wbm',
     paint: {
-        'fill-opacity': 0
-    }
+    'fill-color': [
+        'case',
+
+        ['boolean', ['feature-state', 'selected'], false],
+        '#0f172a',
+
+        ['boolean', ['feature-state', 'hover'], false],
+        '#fff7ae',
+
+        '#ffffff'
+    ],
+
+    'fill-opacity': [
+        'case',
+
+        ['boolean', ['feature-state', 'selected'], false],
+        0.70,
+
+        ['boolean', ['feature-state', 'hover'], false],
+        0.45,
+
+        0
+    ]
+}
 });
         map.on('mouseenter', 'test-localities', () => {
         map.getCanvas().style.cursor = 'pointer';
@@ -99,7 +185,33 @@ map.addLayer({
     map.on('click', 'test-localities', (e) => {
 
     const p = e.features[0].properties;
+    const feature = e.features[0];
+        if (selectedId !== null) {
 
+    map.setFeatureState(
+        {
+            source: 'test-localities',
+            sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+            id: selectedId
+        },
+        {
+            selected: false
+        }
+    );
+}
+
+selectedId = feature.id;
+
+map.setFeatureState(
+    {
+        source: 'test-localities',
+        sourceLayer: 'x07wqcid6d7jjsrs5wbm',
+        id: selectedId
+    },
+    {
+        selected: true
+    }
+);
         map.setFeatureState(
     {
         source: 'test-localities',
