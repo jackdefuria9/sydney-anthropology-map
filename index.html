@@ -83,7 +83,9 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-map.on('click', 'Localities', (e) => {
+map.on('click', (e) => {
+    console.log('Map clicked');
+});
 
     console.log(e.features[0].properties);
 
