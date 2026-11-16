@@ -89,41 +89,41 @@ map.addLayer({
     alert(Object.keys(p).join('\n'));
 
     document.getElementById('info').innerHTML = `
-
-    <h2>${p.LOC_NAME}</h2>
-
-    <h3>Region</h3>
-    <p>${p["Locality Research Test - Sheet1_Region"]}</p>
-
-    <h3>Historical Summary</h3>
-    <p>${p["Locality Research Test - Sheet1_Historical Summary"]}</p>
-
-    <h3>Cultural Identity</h3>
-    <p>${p["Locality Research Test - Sheet1_Cultural Identity"]}</p>
-
-    <h3>Indigenous Context</h3>
-    <p>${p["Locality Research Test - Sheet1_Indigenous Context"]}</p>
-
-    <h3>Photo 1</h3>
-    <img
-        src="${p["Locality Research Test - Sheet1_Photo URL 1"]}"
-        style="width:100%; border-radius:8px;"
-    >
-
-    <h3>Photo 2</h3>
-    <img
-        src="${p["Locality Research Test - Sheet1_Photo URL 2"]}"
-        style="width:100%; border-radius:8px;"
-    >
-
-    <h3>Audio</h3>
-
-    <audio controls style="width:100%;">
-        <source
-            src="${p["Locality Research Test - Sheet1_Audio URL"]}"
-            type="audio/mpeg">
-    </audio>
-
+ 
+<h2>${p.LOC_NAME}</h2>
+ 
+<h3>Region</h3>
+<p>${p["Locality Research Test — Sheet1_Region"] || ""}</p>
+ 
+<h3>Historical Summary</h3>
+<p>${p["Locality Research Test — Sheet1_Historical Summary"] || ""}</p>
+ 
+<h3>Cultural Identity</h3>
+<p>${p["Locality Research Test — Sheet1_Cultural Identity"] || ""}</p>
+ 
+<h3>Indigenous Context</h3>
+<p>${p["Locality Research Test — Sheet1_Indigenous Context"] || ""}</p>
+ 
+<h3>Photo 1</h3>
+<img
+src="${p["Locality Research Test — Sheet1_Photo URL 1"] || ""}"
+style="width:100%; border-radius:8px;"
+>
+ 
+<h3>Photo 2</h3>
+<img
+src="${p["Locality Research Test — Sheet1_Photo URL 2"] || ""}"
+style="width:100%; border-radius:8px;"
+>
+ 
+<h3>Audio</h3>
+ 
+<audio controls style="width:100%;">
+<source
+src="${p["Locality Research Test — Sheet1_Audio URL"] || ""}"
+type="audio/mpeg">
+</audio>
+ 
 `;
 
 });
