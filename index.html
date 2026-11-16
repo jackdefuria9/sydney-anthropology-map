@@ -82,13 +82,9 @@ map.addLayer({
 });
 });
 
-    map.on('click', (e) => {
+    map.on('click', 'test-localities', (e) => {
 
-    document.getElementById('info').innerHTML = `
-        <h2>Map Click Detected</h2>
-        <p>Longitude: ${e.lngLat.lng}</p>
-        <p>Latitude: ${e.lngLat.lat}</p>
-    `;
+    console.log(e.features[0].properties);
 
 });
     
