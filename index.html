@@ -65,8 +65,21 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', () => {
+map.addSource('test-localities', {
+    type: 'vector',
+    url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
+});
 
-    console.log(map.style);
+map.addLayer({
+    id: 'test-localities',
+    type: 'fill',
+    source: 'test-localities',
+    'source-layer': 'x07wqcid6d7jjsrs5wbm',
+    paint: {
+        'fill-color': '#ff0000',
+        'fill-opacity': 0.3
+    }
+});
 });
 
     map.on('click', (e) => {
