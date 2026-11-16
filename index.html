@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="utf-8">
 <title>Sydney Anthropology Map</title>
@@ -11,126 +12,37 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-.header {
-    background: #1e293b;
-    color: white;
-    padding: 20px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.container {
-    display: flex;
-    height: calc(100vh - 80px);
 }
 
 #map {
-    width: 65%;
-}
-
-.info-panel {
-    width: 35%;
-    padding: 20px;
-    overflow-y: auto;
-    border-left: 1px solid #ccc;
-    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
 }
 </style>
+
 </head>
 
 <body>
 
-<div class="header">
-    Sydney Anthropology Map
-</div>
-
-<div class="container">
-
-    <div id="map"></div>
-
-   <div class="info-panel">
-
-    <h2 id="localityName">
-        Click a locality
-    </h2>
-
-    <div id="localityInfo">
-        Select a locality to view information.
-    </div>
-
-</div>
-
-</div>
+<div id="map"></div>
 
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.15.0/mapbox-gl.js"></script>
 
 <script>
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiamFja2RlZnVyaWE5IiwiYSI6ImNtd2hmaDhyNTAwZWwyeW9odGl6Z2pvcTEifQ.AaJfcjadd8p1qsv6SDsThA';
+mapboxgl.accessToken = 'YOUR_TOKEN';
 
 const map = new mapboxgl.Map({
     container: 'map',
-
     style: 'mapbox://styles/jackdefuria9/cmwh41od700c201sg8u111uzn',
-
     center: [151.2093, -33.8688],
-
-    zoom: 8
+    zoom: 9
 });
 
 map.addControl(new mapboxgl.NavigationControl());
 
-map.on('click', (e) => {
-    console.log('Map clicked');
-});
-
-    console.log(e.features[0].properties);
-
-    const props = e.features[0].properties;
-
-    document.getElementById('localityName').innerHTML =
-        props.LOC_NAME;
-
-    document.getElementById('localityInfo').innerHTML = `
-
-        <h3>Region</h3>
-        <p>${props[Object.keys(props).find(k => k.includes('_Region'))]}</p>
-
-        <h3>Historical Summary</h3>
-        <p>${props[Object.keys(props).find(k => k.includes('_Historical Summary'))]}</p>
-
-        <h3>Cultural Identity</h3>
-        <p>${props[Object.keys(props).find(k => k.includes('_Cultural Identity'))]}</p>
-
-        <h3>Indigenous Context</h3>
-        <p>${props[Object.keys(props).find(k => k.includes('_Indigenous Context'))]}</p>
-
-        <h3>Photo 1</h3>
-<img
-    src="${props[Object.keys(props).find(k => k.includes('_Photo URL 1'))]}"
-    style="width:100%; border-radius:8px; margin-bottom:10px;"
->
-
-        <h3>Photo 2</h3>
-<img
-    src="${props[Object.keys(props).find(k => k.includes('_Photo URL 2'))]}"
-    style="width:100%; border-radius:8px; margin-bottom:10px;"
->
-
-       <h3>Audio</h3>
-
-<audio controls style="width:100%;">
-    <source
-        src="${props[Object.keys(props).find(k => k.includes('_Audio URL'))]}"
-        type="audio/mpeg">
-</audio>
-
-    `;
-});
 </script>
 
 </body>
+
 </html>
