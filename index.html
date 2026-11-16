@@ -31,7 +31,7 @@ body {
     border-left: 1px solid #ccc;
     font-family: Arial, sans-serif;
 }
-}
+
 </style>
 
 </head>
@@ -64,7 +64,7 @@ const map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.NavigationControl());
 
-    map.on('load', () => {map.on('load', () => {
+    map.on('load', () => {
 
     map.addSource('localities-source', {
         type: 'vector',
