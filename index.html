@@ -63,7 +63,9 @@ const map = new mapboxgl.Map({
 });
 
 map.addControl(new mapboxgl.NavigationControl());
-
+map.on('load', () => {
+    console.log(map.getStyle().layers);
+});
     map.on('click', (e) => {
 
     document.getElementById('info').innerHTML = `
