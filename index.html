@@ -164,6 +164,21 @@ map.addLayer({
 
     const p = e.features[0].properties;
 
+        const bounds = new mapboxgl.LngLatBounds();
+
+const coords = feature.geometry.coordinates[0];
+
+coords.forEach(coord => {
+    bounds.extend(coord);
+});
+
+map.fitBounds(bounds, {
+    padding: 80,
+    pitch: 45,
+    bearing: -15,
+    duration: 2500
+});
+        
     document.getElementById('info').innerHTML = `
  
 <h2>${p.LOC_NAME}</h2>
