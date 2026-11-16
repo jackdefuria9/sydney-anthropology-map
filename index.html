@@ -66,26 +66,6 @@ map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', () => {
 
-    map.addSource('localities-source', {
-        type: 'vector',
-        url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
-    });
-
-    map.addLayer({
-        id: 'localities-clickable',
-        type: 'fill',
-        source: 'localities-source',
-        'source-layer': 'Locality_Test',
-        paint: {
-            'fill-color': '#ff0000',
-            'fill-opacity': 0.25
-        }
-    });
-
-    map.on('click', 'localities-clickable', (e) => {
-        alert(e.features[0].properties.LOC_NAME);
-    });
-
     console.log(map.getStyle());
 });
     map.on('click', (e) => {
