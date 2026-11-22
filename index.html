@@ -144,7 +144,7 @@ const map = new mapboxgl.Map({
 map.addControl(new mapboxgl.NavigationControl());
 
     map.on('load', () => {
-map.addSource('test-localities', {
+    map.addSource('test-localities', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
 });
@@ -158,6 +158,24 @@ map.addLayer({
         'fill-opacity': 0
     }
 });
+
+    map.addSource('landmarks', {
+        type: 'vector',
+        url: 'mapbox://jackdefuria9.yflrvmo0gzpb'
+    });
+
+    map.addLayer({
+        id: 'landmarks',
+        type: 'circle',
+        source: 'landmarks',
+        'source-layer': 'xrgfm9esnjk0o7npst8k',
+        paint: {
+            'circle-radius': 8,
+            'circle-color': '#ff6a00',
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#ffffff'
+        }
+    });
         
 });
 
