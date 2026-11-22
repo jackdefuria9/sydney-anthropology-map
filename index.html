@@ -148,7 +148,11 @@ map.addSource('test-localities', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
 });
-
+map.on('click', (e) => {
+    console.log(
+        map.queryRenderedFeatures(e.point)
+    );
+});
     map.addSource('landmarks', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.yflrvmo0gzpb'
