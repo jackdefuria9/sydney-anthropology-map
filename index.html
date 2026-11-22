@@ -148,11 +148,7 @@ map.addSource('test-localities', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.w9uzgf3xyu0k'
 });
-map.on('click', (e) => {
-    console.log(
-        map.queryRenderedFeatures(e.point)
-    );
-});
+
     map.addSource('landmarks', {
     type: 'vector',
     url: 'mapbox://jackdefuria9.yflrvmo0gzpb'
@@ -172,7 +168,7 @@ map.addLayer({
     id: 'landmarks',
     type: 'circle',
     source: 'landmarks',
-    'source-layer': 'xrgfm9esnjkb0o7npst8k',
+    'source-layer': 'Landmark_Test',
     paint: {
         'circle-radius': 20,
         'circle-color': '#ff0000',
