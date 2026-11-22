@@ -219,7 +219,41 @@ type="audio/mpeg">
 `;
 
 });
+map.on('click', 'landmarks', (e) => {
 
+    const p = e.features[0].properties;
+
+    document.getElementById('info').innerHTML = `
+
+<h2>${p.Landmark}</h2>
+
+<div class="region">
+    ${p.Locality || ""}
+</div>
+
+<img
+src="${p['Photo URL 1'] || ''}"
+style="width:100%; border-radius:8px;"
+>
+
+<img
+src="${p['Photo URL 2'] || ''}"
+style="width:100%; border-radius:8px;"
+>
+
+<audio controls style="width:100%;">
+<source
+src="${p['Audio URL'] || ''}"
+type="audio/mpeg">
+</audio>
+
+<h3>Description</h3>
+<p>${p.Description || ''}</p>
+
+`;
+
+});
+    
 </script>
 
 </body>
