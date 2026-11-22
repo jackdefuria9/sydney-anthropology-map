@@ -163,6 +163,20 @@ map.addLayer({
         'fill-opacity': 0
     }
 });
+
+map.addLayer({
+    id: 'landmarks',
+    type: 'circle',
+    source: 'landmarks',
+    'source-layer': 'xrgfm9esnjkb0o7npst8k',
+    paint: {
+        'circle-radius': 8,
+        'circle-color': '#ff6a00',
+        'circle-stroke-width': 2,
+        'circle-stroke-color': '#ffffff'
+    }
+});
+        
 });
 
     map.on('click', 'test-localities', (e) => {
